@@ -8,5 +8,5 @@ The [DFT] directory contains the results of the DFT runs, including all the inpu
 The [TEX] directory contains the main script and the figures for the arXiv.
 
 The [HYB] directory contains the codes for the Hartree-Fock (static mean-field) calculations.
-- [codes]: The codes for HF.
+- [codes]: The codes for the Hartree-Fock approach.
 - [example]: The result of U = 1.7 eV and J = 0.2 eV.
