@@ -13,7 +13,7 @@ The [HYB] directory contains the codes for the Hartree-Fock (static mean-field) 
 1. Install [SRC_dmft1.1].
 [dmft]: To calculate the occupation matrix.
 
-2. Install Hartree-Fock codes. For example,
+2. Install Hartree-Fock codes.
 ifort -o init_sig init_sig.f90
 ifort -o mk_kanamori_mf_h mk_kanamori_mf_h.f90
 ifort -o mx_occ mx_occ.f90
