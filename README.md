@@ -5,8 +5,8 @@ The [DFT] directory contains the results of the DFT runs, including all the inpu
 - [RuO2_1_GGA_afterSCF.tar.gz]: The result of the NM GGA.
 - [RuO2_2_GGA_U_afterSCF.tar.gz]: The result of the AFM GGA+U, with U = 2.8 eV and J = 0.2 eV.
 
-The [HYB] directory contains the codes for the Hartree-Fock (static mean-field) calculations.
-- [codes]: The codes for the Hartree-Fock approach.
+The [HYB] directory contains the codes for the Hartree-Fock (HF, static mean-field) calculations.
+- [codes]: The codes for the HF approach.
 - [example]: The result of the AFM HF, with U = 1.7 eV and J = 0.2 eV.
 
 The [TEX] directory contains the main script and the figures for the arXiv.
