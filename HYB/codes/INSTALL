@@ -1,0 +1,21 @@
+
+
+ifort -o init_hk_af init_hk_af.f90
+
+ifort -o init_hr init_hr.f90
+
+ifort -o init_sig init_sig.f90
+
+ifort -o mk_kanamori_mf mk_kanamori_mf.f90
+
+ifort -o mx_occ mx_occ.f90
+
+For my laptop:
+ifort -O -o mk_band_kanamori_af mk_band_kanamori_af.f90 -L/opt/intel/mkl/10.2.5.035/lib/em64t -lmkl_lapack95_lp64 -lmkl_intel_lp64 -lmkl_core -lmkl_sequential -lpthread -lm
+
+For 163.152.230.35:
+ifort -O -o mk_band_kanamori_af mk_band_kanamori_af.f90 -L/opt/intel-14.0.3/composer_xe_2013_sp1.3.174/mkl/lib/intel64 -lmkl_lapack95_lp64 -lmkl_intel_lp64 -lmkl_core -lmkl_sequential -lpthread -lm
+
+ifort -o ck_mm ck_mm.f90
+
+
