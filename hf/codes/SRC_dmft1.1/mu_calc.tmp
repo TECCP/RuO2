@@ -1,0 +1,89 @@
+	subroutine mu_calc
+        include 'dmft.dat'      
+
+ 
+        if (myid.eq.0)
+	 xinc=2.0
+         write(6,*)'****************************************'
+         write(6,*)'CALULATION OF CHEM. POTENTTIAL'
+         write(6,*)'****************************************'
+         write(6,*)'SEARCH FOR UPPER and LOWER BOUNDS'
+        endif
+c
+c..initial occupation
+        kmin=nk1(myid+1)
+        kmax=nk2(myid+1)
+        call xn(xmu,my_x,kmin,kmax)
+        call MPI_REDUCE(my_x,x,1,MPI_DOUBLE_PRECISION,
+     &  MPI_SUM,0,MPI_COMM_WORLD,err)
+c       
+         if (x.lt.x_el) then
+          x1=x
+          t1=xmu
+	  call finc(t1,x1,t2,x2,xinc)
+         else
+          xinc=-xinc
+          x2=x
+          t2=xmu
+         call finc(t2,x2,t1,x1,xinc)
+         endif
+         write(6,*)
+	 write(6,*)'BOUNDS & OCCUPATIONS:',t1,t2,'   ',x1,x2
+         write(6,*)
+	 iter=0
+         om=(2*Im+1)*pi/beta
+         Xtol=1.d-2*(emax/om)**3
+         Xtol=max(Xtol,1.d-6)
+         write(6,*)'n_tot toletance =',xtol
+
+ 10      t=(t1+t2)/Two
+        call xn(t,x) 
+	iter=iter+1
+	if (abs(x_el-x).le.Xtol) then
+	 xmu=t
+	 return
+	else
+	 if (x.gt.x_el) then
+	  t2=t
+	  x2=x
+	 else
+          t1=t
+          x1=x
+	 endif
+       endif
+       if (iter.lt.Maxiter) then
+	goto 10
+       else
+	stop 'too many iterations'
+       endif
+	
+	end 
+	
+
+
+
+
+	 
+
+	subroutine finc(t0,x0,t,x,tinc)
+        include 'dmft.dat'	
+	t=t0+tinc
+
+10      continue
+        kmin=nk1(myid+1)
+        kmax=nk2(myid+1)
+        call xn(t,my_x,kmin,kmax)
+        call MPI_REDUCE(my_x,x,1,MPI_DOUBLE_PRECISION,
+     &  MPI_SUM,0,MPI_COMM_WORLD,err)
+
+ 10	call xn(t,x)
+	if ((x-x_el)*(x0-x_el).gt.0.d0) then
+ 	t=t+tinc
+        x0=x
+	goto 10
+	endif
+        t0=t-tinc
+	return
+	end
+
+	
