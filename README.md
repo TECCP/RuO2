@@ -9,4 +9,4 @@ The [hf] directory contains the codes for the Hartree-Fock (HF, static mean-fiel
 - [codes]: The codes for the HF approach.
 - [example]: The result of the AFM HF, with U = 1.7 eV and J = 0.2 eV.
 
-The [arxiv] directory contains the main script and the figures for the arXiv.
+The [arxiv] directory contains the main script and the figures for arXiv:1902.04436.
